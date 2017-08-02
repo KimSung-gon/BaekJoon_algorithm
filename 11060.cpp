@@ -25,6 +25,7 @@ int main() {
 				dp[i+ j] = dp[i] + 1;
 		}
 	}
+	
 	if (dp[targetNum] == 0) {
 		printf("-1");
 		return 0;
