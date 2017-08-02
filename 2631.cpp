@@ -1,36 +1,26 @@
 #include <algorithm>
-
 using namespace std;
 int num;
 
-int input[201];
+int input[601];
 int temp[201];
 int dp[201];
 
 int main() {
 
 	scanf("%d", &num);
-	
+
 	int len = 0;
+	dp[1] = 1;
+	int pos = 1;
 
 	for (int i = 1; i <= num; i++) {
 		scanf("%d", &input[i]);
-		
-		int start = 0;
-		int end = len + 1;
-		int mid;
-
-		while (start < end) {
-			mid = (start + end) / 2;
-			if (input[i] > dp[mid])
-				start = mid + 1;
-			else
-				end = mid;
-		}
-
-		if (len < end)
-			len = end;
-		dp[end] = input[i];
+		auto pos = lower_bound(temp + 1, temp + len + 1, input[i]);
+		*pos = input[i];
+		dp[i] = distance(temp, pos);
+		if (pos == temp + len + 1)
+			len++;
 	}
 	printf("%d\n", num - len);
 }
