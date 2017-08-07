@@ -18,7 +18,7 @@ int main() {
 		sum += dpProcess(i, depth);
 		memset(dp, 0, 4040);
 	}
-	cout << sum;
+	cout << sum % divide;
 }
 
 int dpProcess(int num, int depth) {
@@ -34,5 +34,5 @@ int dpProcess(int num, int depth) {
 	if (dp[num][depth] == 0)
 		dp[num][depth] = dpProcess(num + 1, depth - 1) + dpProcess(num - 1, depth - 1);
 
-	return dp[num][depth];
+	return dp[num][depth] % divide;
 }
