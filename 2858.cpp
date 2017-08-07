@@ -11,8 +11,8 @@ int main() {
 	int tempR, tempB;
 
 	int rows, cols;
-	for (int i = 3; i <= 1450; i++) {
-		for (int j = 3; j <= 1450; j++) {
+	for (int i = 3; i <= 3000; i++) {
+		for (int j = 3; j <= 3000; j++) {
 			tempR = (i + j) * 2 - 4;
 			tempB = i * j - tempR;
 			if (tempR == R && tempB == B) {
