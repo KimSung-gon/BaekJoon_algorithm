@@ -35,7 +35,7 @@ int main() {
 	}
 	cout << dp[N][N];
 }
-/*
+/* Something wrong with lower bound
 void findWay(int N, int curX, int curY) {
 
 	if (input[curX][curY] == 0)
