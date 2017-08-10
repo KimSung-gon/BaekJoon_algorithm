@@ -2,7 +2,6 @@
 #include <iostream>
 using namespace std;
 
-int dpProcess(int loc, int rest);
 int num;
 pair<int, int> input[16];
 int dp[16];
@@ -10,27 +9,17 @@ int dp[16];
 int main() {
 
 	scanf("%d", &num);
-	for (int i = 1; i <= num; i++) 
+	for (int i = 1; i <= num; i++)
 		scanf("%d %d", &input[i].first, &input[i].second);
-
-	dp[0] = 0;
-	dp[1] = 0;
-	cout << dpProcess(num, num);
-}
-
-int dpProcess(int loc, int rest) {
-
-	if (input[loc].first > rest)
-		return 0;
-	int temp;
-	int lastLoc;
+		
+	int temp = 0;
 	for (int i = 1; i <= num; i++) {
-		rest = input[loc + i].first;
-		temp = max(dp[i], dpProcess(loc + i, rest) + input[loc + i].second);
-		if (dp[loc + i] < temp) {
-			dp[loc + i] = temp;
-			lastLoc = loc + i;
+		dp[i + input[i].first] = max(dp[i + input[i].first], dp[i] + input[i].second);
+		temp = dp[i + input[i].first];
+		for (int j = i + input[i].first; j <= num + 1; j++) {
+			if(dp[j] < temp)
+				dp[j] = temp;
 		}
 	}
-	return dp[lastLoc];
+	cout << dp[num + 1] << endl;
 }
