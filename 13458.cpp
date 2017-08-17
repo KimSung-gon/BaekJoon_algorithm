@@ -1,45 +1,34 @@
 #include <algorithm>
 
 using namespace std;
-int numOfEachRoom[1000001];
+long long numOfEachRoom[1000001];
+long long numOfRoom;
+
 int main() {
 
-	int numOfRoom;
 	scanf("%d", &numOfRoom);
 
 	for (int i = 1; i <= numOfRoom; i++)
-		scanf("%d", &numOfEachRoom[i]);
+		scanf("%lld", &numOfEachRoom[i]);
+
+	long long mDirector, sDirector;
 	
-	int mDirector, sDirector;
-	scanf("%d %d", &mDirector, &sDirector);
-	
-	int minDirector = 0;
-	//if (mDirector > sDirector) {
+	scanf("%lld %lld", &mDirector, &sDirector);
+
+	long long minDirector = 0;
+
+	for (int i = 1; i <= numOfRoom; i++) {
+		numOfEachRoom[i] -= mDirector;
+		minDirector++;
+		if (numOfEachRoom[i] > 0) {
+			long long int temp = numOfEachRoom[i] / sDirector;
+			numOfEachRoom[i] -= sDirector * temp;
+			minDirector += temp;
+		}
 		
-		for (int i = 1; i <= numOfRoom; i++) {
-			numOfEachRoom[i] -= mDirector;
+		if (numOfEachRoom[i] > 0)
 			minDirector++;
-		}
-		for (int i = 1; i <= numOfRoom; i++) {
-			while (numOfEachRoom[i] > sDirector) {
-				int temp = numOfEachRoom[i] / sDirector;
-				numOfEachRoom[i] -= sDirector * temp;
-				minDirector += temp;
-			}
-			if (numOfEachRoom[i] != 0)
-				minDirector++;
-		}
-	//}
-	/*else {
-		for (int i = 1; i <= numOfRoom; i++) {
-			while (numOfEachRoom[i] > sDirector) {
-				int temp = numOfEachRoom[i] / sDirector;
-				numOfEachRoom[i] -= sDirector * temp;
-				minDirector+=temp;
-			}
-			if (numOfEachRoom[i] != 0)
-				minDirector++;
-		}
-	}*/
-	printf("%d", minDirector);
+	}
+
+	printf("%lld", minDirector);
 }
