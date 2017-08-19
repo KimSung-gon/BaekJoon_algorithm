@@ -6,6 +6,7 @@ int numOfCoins;
 int coins[21];
 int dp[10001];
 //void dfs(int target);
+
 int cnt;
 
 int main() {
