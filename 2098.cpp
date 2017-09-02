@@ -31,7 +31,7 @@ int main() {
 
 void dfs(int cur, int cnt, int sum) {
 	
-	if (cnt == 3) {
+	if (cnt == num-1) {
 		minCost = min(minCost, sum + W[cur][first]);
 		return;
 	}
