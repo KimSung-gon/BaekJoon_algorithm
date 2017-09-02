@@ -24,6 +24,7 @@ int main() {
 	for (int i = 0; i < num; i++) {
 		first = i;
 		dfs(i, 0, 0);
+		memset(check, 0, sizeof(int) * 16);
 	}
 	printf("%d", minCost);
 }
